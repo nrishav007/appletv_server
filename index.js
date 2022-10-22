@@ -16,7 +16,7 @@ app.get("/projects", (req, res) => {
 
 //To get a specific project, we need to define a parameter id
 app.get("/projects/:id", function (req, res) {
-    const project = projects.find(c => c.id === parseInt(req.params.id));
+    const project = db.find(c => c.id === parseInt(req.params.id));
     //if the project does not exist return status 404 (not found)
     if (!project)
         return res
