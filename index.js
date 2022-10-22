@@ -29,11 +29,11 @@ app.get("/projects/:id", function (req, res) {
 app.post("/projects", function (req, res) {
     //create a project object
     const project = {
-        id: projects.length + 1,
+        id: db.length + 1,
         name: req.body.name
     };
     //add the project to the array
-    projects.push(project);
+    db.push(project);
     //return the project
     res.send(project);
 });
@@ -51,7 +51,7 @@ app.put("/projects/:id", function (req, res) {
 });
 app.put("/projects/:id", function (req, res) {
     //get the project
-    const project = projects.find(c => c.id === parseInt(req.params.id));
+    const project = db.find(c => c.id === parseInt(req.params.id));
     if (!project)
         return res
             .status(404)
