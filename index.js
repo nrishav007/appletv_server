@@ -1,3 +1,4 @@
+import db from "./db.json"
 const express = require("express");
 
 // Initialize Express
@@ -5,7 +6,7 @@ const app = express();
 
 // Create GET request
 app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+  res.send(db);
 });
 
 // Initialize server
