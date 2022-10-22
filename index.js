@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
     res.send("Hey There! Thanks for visiting...");
 });
 
-app.get("/project", (req, res) => {
+app.get("/projects", (req, res) => {
     res.send(db);
 });
 
