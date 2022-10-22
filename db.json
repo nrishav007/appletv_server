@@ -1,11 +1,14 @@
-{
-    "projects":
-    [
-        {
-            "id":1,
-            "image":"image",
-            "source":"github",
-            "deploy":"netlify/vercel"
-        }
-    ]
-}
+[
+    {
+        "id":1,
+        "image":"image",
+        "source":"github",
+        "deploy":"netlify/vercel"
+    },
+    {
+        "id":2,
+        "image":"image1",
+        "source":"github1",
+        "deploy":"netlify/vercel1"
+    }
+]
