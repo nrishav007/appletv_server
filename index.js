@@ -6,8 +6,12 @@ const app = express();
 
 // Create GET request
 app.get("/", (req, res) => {
-  res.send(db);
+  res.send("Hey There! Thanks for visiting...");
 });
+
+app.get("/projects", (req, res) => {
+    res.send(db);
+  });
 
 // Initialize server
 app.listen(5000, () => {
