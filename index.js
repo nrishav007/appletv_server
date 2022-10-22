@@ -1,3 +1,4 @@
+import db from "./db.json"
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
@@ -17,7 +18,7 @@ app.get("/", function(req, res) {
 
 //when we route to /courses
 app.get("/courses", function(req, res) {
-  res.send(courses); //respond with the array of courses
+  res.send(db); //respond with the array of courses
 });
 
 //To get a specific course, we need to define a parameter id
