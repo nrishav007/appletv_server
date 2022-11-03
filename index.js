@@ -1,7 +1,6 @@
 import db from "./db.json";
 const PORT = process.env.PORT || 3000;
 const express = require("express");
-import rishav from "./Resources/rishav-neogi-resume.pdf"
 // Initialize Express
 const app = express();
 
@@ -12,10 +11,6 @@ app.get("/", (req, res) => {
 
 app.get("/projects", (req, res) => {
     res.send(db);
-});
-
-app.get("/resume", (req, res) => {
-    res.send(rishav);
 });
 
 //To get a specific project, we need to define a parameter id
