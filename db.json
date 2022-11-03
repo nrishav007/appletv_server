@@ -1,7 +1,7 @@
 [
     {
         "id":1,
-        "image":"image",
+        "image":"https://drive.google.com/file/d/18dwZCrtStYqBD7Jja2xzL5tiLG5-8FFu/view?usp=sharing",
         "source":"github",
         "deploy":"netlify/vercel"
     },
