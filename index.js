@@ -117,6 +117,6 @@ app.get("/watchPremium/:id", function (req, res) {
 //     //returns the updated object
 //     res.send(project);
 // });
-// app.listen(PORT, function () {
-//     console.log(`Listening on Port ${PORT}`);
-// });
+app.listen(PORT, function () {
+    console.log(`Listening on Port ${PORT}`);
+});
