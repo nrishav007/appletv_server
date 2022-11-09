@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
-const watch_premium = require("./Resources/watch_premium.json");
+const watch_premium = require("./Resources/watch_premiers.json");
 const latest_originals = require("./Resources/latest_originals.json");
 const most_popular = require("./Resources/most_popular.json");
 const future_release = require("./Resources/future_release.json");
@@ -17,7 +17,7 @@ const help = {
     "Future Release": "/futureRelease",
     "Comedy": "/comedy",
     "Drama": "/drama",
-    "All Feature Films":"/allFeatureFilms",
+    "All Feature Films": "/allFeatureFilms",
     "All Drama Films": "/allDramaFilms",
     "All Comedy Films": "/allComedyFilms"
 }
@@ -32,7 +32,7 @@ app.get("/tv", (req, res) => {
     res.send(help);
 });
 
-const data = (json,path) => {
+const data = (json, path) => {
     app.get(`/${path}`, (req, res) => {
         res.send(json);
     });
@@ -51,15 +51,15 @@ const data = (json,path) => {
 }
 
 
-data(watch_premium,"watchPremium");
-data(latest_originals,"latestOriginals");
-data(most_popular,"mostPopular");
-data(future_release,"futureRelease");
-data(drama,"drama");
-data(comedy,"comedy");
-data(all_feature_films,"allFeatureFilms");
-data(all_drama_series,"allDramaFilms");
-data(all_comedy_series,"allComedyFilms");
+data(watch_premium, "watchPremiers");
+data(latest_originals, "latestOriginals");
+data(most_popular, "mostPopular");
+data(future_release, "futureRelease");
+data(drama, "drama");
+data(comedy, "comedy");
+data(all_feature_films, "allFeatureFilms");
+data(all_drama_series, "allDramaFilms");
+data(all_comedy_series, "allComedyFilms");
 
 
 
