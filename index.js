@@ -19,7 +19,7 @@ const dataObj=[
     {
         database:most_popular,
         url:"mostPopular"
-    },
+    }
 ]
 const setData=(database,url)=>{
     app.get(`/${url}`, (req, res) => {
