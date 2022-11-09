@@ -1,8 +1,8 @@
-// import watch_premium from "./Resources/watch_premium.json";
-// import most_popular from "./Resources/most_popular.json";
-const dataObj=require("./dataObjects")
 const PORT = process.env.PORT || 3000;
 const express = require("express");
+const watch_premium = require("./Resources/watch_premium.json");
+const latest_originals = require("./Resources/latest_originals.json");
+const most_popular = require("./Resources/most_popular.json");
 // Initialize Express
 const app = express();
 
@@ -11,36 +11,60 @@ app.get("/", (req, res) => {
     res.send("Hey There! Thanks for visiting...");
 });
 
-const setData=(database,url)=>{
-    app.get(`/${url}`, (req, res) => {
-        res.send({database});
-    });
-    
-    //To get a specific project, we need to define a parameter id
-    app.get(`/${url}/:id`, function (req, res) {
-        const data = watch_premium.find(c => c.id === parseInt(req.params.id));
-        //if the project does not exist return status 404 (not found)
-        if (!data)
-            return res
-                .status(404)
-                .send("The project with the given id was not found");
-        //return the object
-        res.send(data);
-    });
-}
 
-dataObj.map(({database,url})=>{
-    setData(database,url);
+
+app.get("/watchPremium", (req, res) => {
+    res.send(watch_premium);
 });
 
-app.listen(PORT, function () {
-    console.log(`Listening on Port ${PORT}`);
+//To get a specific project, we need to define a parameter id
+app.get("/watchPremium/:id", function (req, res) {
+    const data = watch_premium.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
 });
 
 
 
 
+app.get("/latestOriginals", (req, res) => {
+    res.send(latest_originals);
+});
 
+//To get a specific project, we need to define a parameter id
+app.get("/latestOriginals/:id", function (req, res) {
+    const data = latest_originals.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
+});
+
+
+
+app.get("/mostPopular", (req, res) => {
+    res.send(most_popular);
+});
+
+//To get a specific project, we need to define a parameter id
+app.get("/mostPopular/:id", function (req, res) {
+    const data = most_popular.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
+});
 
 
 
@@ -126,3 +150,6 @@ app.listen(PORT, function () {
 //     //returns the updated object
 //     res.send(project);
 // });
+app.listen(PORT, function () {
+    console.log(`Listening on Port ${PORT}`);
+});
