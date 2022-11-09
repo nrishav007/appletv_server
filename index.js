@@ -9,12 +9,12 @@ app.get("/", (req, res) => {
     res.send("Hey There! Thanks for visiting...");
 });
 
-app.get("/mytv", (req, res) => {
+app.get("/projects", (req, res) => {
     res.send(db);
 });
 
 //To get a specific project, we need to define a parameter id
-app.get("/mytv/:id", function (req, res) {
+app.get("/projects/:id", function (req, res) {
     const project = db.find(c => c.id === parseInt(req.params.id));
     //if the project does not exist return status 404 (not found)
     if (!project)
@@ -25,7 +25,7 @@ app.get("/mytv/:id", function (req, res) {
     res.send(project);
 });
 //using the http post request we can create a new project
-app.post("/mytv", function (req, res) {
+app.post("/projects", function (req, res) {
     //create a project object
     const project = {
         id: db.length + 1,
@@ -36,7 +36,7 @@ app.post("/mytv", function (req, res) {
     //return the project
     res.send(project);
 });
-app.put("/mytv/:id", function (req, res) {
+app.put("/projects/:id", function (req, res) {
     //get the project
     const project = db.find(c => c.id === parseInt(req.params.id));
     if (!project)
@@ -48,7 +48,7 @@ app.put("/mytv/:id", function (req, res) {
     //return the updated object
     res.send(project);
 });
-app.put("/mytv/:id", function (req, res) {
+app.put("/projects/:id", function (req, res) {
     //get the project
     const project = db.find(c => c.id === parseInt(req.params.id));
     if (!project)
