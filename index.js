@@ -1,7 +1,8 @@
-import watch_premium from "./Resources/watch_premium.json";
-import most_popular from "./Resources/most_popular.json";
+// import watch_premium from "./Resources/watch_premium.json";
+// import most_popular from "./Resources/most_popular.json";
 
-
+const watch_premium=require("./Resources/watch_premium.json");
+const most_popular=require("./Resources/most_popular.json")
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 // Initialize Express
