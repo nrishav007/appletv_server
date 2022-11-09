@@ -1,11 +1,11 @@
-import * as database from "./Resources"
+import watch_premium from "./Resources/watch_premium.json";
+import most_popular from "./Resources/most_popular.json";
+
 
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 // Initialize Express
 const app = express();
-
-const {watch_premium,most_popular}=database;
 
 // Create GET request
 app.get("/", (req, res) => {
@@ -19,7 +19,7 @@ const dataObj=[
     {
         database:most_popular,
         url:"mostPopular"
-    }
+    },
 ]
 const setData=(database,url)=>{
     app.get(`/${url}`, (req, res) => {
@@ -38,10 +38,14 @@ const setData=(database,url)=>{
         res.send(data);
     });
 }
+
 dataObj.map(({database,url})=>{
     setData(database,url);
-})
+});
 
+app.listen(PORT, function () {
+    console.log(`Listening on Port ${PORT}`);
+});
 
 
 
@@ -132,6 +136,3 @@ dataObj.map(({database,url})=>{
 //     //returns the updated object
 //     res.send(project);
 // });
-app.listen(PORT, function () {
-    console.log(`Listening on Port ${PORT}`);
-});
