@@ -6,14 +6,20 @@ const most_popular = require("./Resources/most_popular.json");
 const future_release = require("./Resources/future_release.json");
 const drama = require("./Resources/drama.json");
 const comedy = require("./Resources/comedy.json");
+const all_comedy_series = require("./Resources/all_comedy_series.json");
+const all_drama_series = require("./Resources/all_drama_series.json");
+const all_feature_films = require("./Resources/all_feature_films.json");
 
-const help={
-    "watch Premium":"/watchPremium",
-    "Latest Originals":"/latestOriginals",
-    "Most Popular":"/mostPopular",
-    "Future Release":"/futureRelease",
-    "Comedy":"/comedy",
-    "Drama":"/drama",
+const help = {
+    "Watch Premium": "/watchPremium",
+    "Latest Originals": "/latestOriginals",
+    "Most Popular": "/mostPopular",
+    "Future Release": "/futureRelease",
+    "Comedy": "/comedy",
+    "Drama": "/drama",
+    "All Feature Films":"/allFeatureFilms",
+    "All Drama Films": "/allDramaFilms",
+    "All Comedy Films": "/allComedyFilms"
 }
 
 
@@ -26,123 +32,34 @@ app.get("/tv", (req, res) => {
     res.send(help);
 });
 
+const data = (json,path) => {
+    app.get(`/${path}`, (req, res) => {
+        res.send(json);
+    });
+
+    //To get a specific project, we need to define a parameter id
+    app.get(`/${path}/:id`, function (req, res) {
+        const data = json.find(c => c.id === parseInt(req.params.id));
+        //if the project does not exist return status 404 (not found)
+        if (!data)
+            return res
+                .status(404)
+                .send("The project with the given id was not found");
+        //return the object
+        res.send(data);
+    });
+}
 
 
-app.get("/watchPremium", (req, res) => {
-    res.send(watch_premium);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/watchPremium/:id", function (req, res) {
-    const data = watch_premium.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-
-app.get("/latestOriginals", (req, res) => {
-    res.send(latest_originals);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/latestOriginals/:id", function (req, res) {
-    const data = latest_originals.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-app.get("/mostPopular", (req, res) => {
-    res.send(most_popular);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/mostPopular/:id", function (req, res) {
-    const data = most_popular.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-
-app.get("/futureRelease", (req, res) => {
-    res.send(future_release);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/futureRelease/:id", function (req, res) {
-    const data = future_release.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-
-app.get("/comedy", (req, res) => {
-    res.send(comedy);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/comedy/:id", function (req, res) {
-    const data = comedy.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-app.get("/drama", (req, res) => {
-    res.send(drama);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/drama/:id", function (req, res) {
-    const data = drama.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
-
-
-
-
-
+data(watch_premium,"watchPremium");
+data(latest_originals,"latestOriginals");
+data(most_popular,"mostPopular");
+data(future_release,"futureRelease");
+data(drama,"drama");
+data(comedy,"comedy");
+data(all_feature_films,"allFeatureFilms");
+data(all_drama_series,"allDramaFilms");
+data(all_comedy_series,"allComedyFilms");
 
 
 
