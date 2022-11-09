@@ -1,8 +1,6 @@
 // import watch_premium from "./Resources/watch_premium.json";
 // import most_popular from "./Resources/most_popular.json";
-
-const watch_premium=require("./Resources/watch_premium.json");
-const most_popular=require("./Resources/most_popular.json")
+const dataObj=require("./dataObjects")
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 // Initialize Express
@@ -12,16 +10,7 @@ const app = express();
 app.get("/", (req, res) => {
     res.send("Hey There! Thanks for visiting...");
 });
-const dataObj=[
-    {
-        database:watch_premium,
-        url:"watchPremium"
-    },
-    {
-        database:most_popular,
-        url:"mostPopular"
-    },
-]
+
 const setData=(database,url)=>{
     app.get(`/${url}`, (req, res) => {
         res.send({database});
