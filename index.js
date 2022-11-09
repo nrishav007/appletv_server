@@ -7,7 +7,14 @@ const future_release = require("./Resources/future_release.json");
 const drama = require("./Resources/drama.json");
 const comedy = require("./Resources/comedy.json");
 
-
+const help={
+    "watch Premium":"/watchPremium",
+    "Latest Originals":"/latestOriginals",
+    "Most Popular":"/mostPopular",
+    "Future Release":"/futureRelease",
+    "Comedy":"/comedy",
+    "Drama":"/drama",
+}
 
 
 
@@ -15,9 +22,9 @@ const comedy = require("./Resources/comedy.json");
 const app = express();
 
 // Create GET request
-// app.get("/", (req, res) => {
-//     res.send("");
-// });
+app.get("/tv", (req, res) => {
+    res.send(help);
+});
 
 
 
