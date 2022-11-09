@@ -3,6 +3,14 @@ const express = require("express");
 const watch_premium = require("./Resources/watch_premium.json");
 const latest_originals = require("./Resources/latest_originals.json");
 const most_popular = require("./Resources/most_popular.json");
+const future_release = require("./Resources/future_release.json");
+const drama = require("./Resources/drama.json");
+const comedy = require("./Resources/comedy.json");
+
+
+
+
+
 // Initialize Express
 const app = express();
 
@@ -69,15 +77,58 @@ app.get("/mostPopular/:id", function (req, res) {
 
 
 
+app.get("/futureRelease", (req, res) => {
+    res.send(future_release);
+});
+
+//To get a specific project, we need to define a parameter id
+app.get("/futureRelease/:id", function (req, res) {
+    const data = future_release.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
+});
 
 
 
 
+app.get("/comedy", (req, res) => {
+    res.send(comedy);
+});
+
+//To get a specific project, we need to define a parameter id
+app.get("/comedy/:id", function (req, res) {
+    const data = comedy.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
+});
 
 
 
+app.get("/drama", (req, res) => {
+    res.send(drama);
+});
 
-
+//To get a specific project, we need to define a parameter id
+app.get("/drama/:id", function (req, res) {
+    const data = drama.find(c => c.id === parseInt(req.params.id));
+    //if the project does not exist return status 404 (not found)
+    if (!data)
+        return res
+            .status(404)
+            .send("The project with the given id was not found");
+    //return the object
+    res.send(data);
+});
 
 
 
