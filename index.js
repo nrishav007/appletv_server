@@ -7,9 +7,9 @@ const most_popular = require("./Resources/most_popular.json");
 const app = express();
 
 // Create GET request
-app.get("/", (req, res) => {
-    res.send("Hey There! Thanks for visiting...");
-});
+// app.get("/", (req, res) => {
+//     res.send("");
+// });
 
 
 
