@@ -1,9 +1,11 @@
-import watch_premium from "./Resources/watch_premium.json";
+import * as database from "./Resources"
 
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 // Initialize Express
 const app = express();
+
+const {watch_premium,most_popular}=database;
 
 // Create GET request
 app.get("/", (req, res) => {
@@ -13,7 +15,11 @@ const dataObj=[
     {
         database:watch_premium,
         url:"watchPremium"
-    }
+    },
+    {
+        database:most_popular,
+        url:"mostPopular"
+    },
 ]
 const setData=(database,url)=>{
     app.get(`/${url}`, (req, res) => {
