@@ -1,4 +1,5 @@
 import watch_premium from "./Resources/watch_premium.json";
+
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 // Initialize Express
@@ -8,24 +9,32 @@ const app = express();
 app.get("/", (req, res) => {
     res.send("Hey There! Thanks for visiting...");
 });
-
-app.get("/watchPremium", (req, res) => {
-    res.send(watch_premium);
-});
-
-//To get a specific project, we need to define a parameter id
-app.get("/watchPremium/:id", function (req, res) {
-    const data = watch_premium.find(c => c.id === parseInt(req.params.id));
-    //if the project does not exist return status 404 (not found)
-    if (!data)
-        return res
-            .status(404)
-            .send("The project with the given id was not found");
-    //return the object
-    res.send(data);
-});
-
-
+const dataObj=[
+    {
+        database:watch_premium,
+        url:"watchPremium"
+    }
+]
+const setData=(database,url)=>{
+    app.get(`/${url}`, (req, res) => {
+        res.send({database});
+    });
+    
+    //To get a specific project, we need to define a parameter id
+    app.get(`/${url}/:id`, function (req, res) {
+        const data = watch_premium.find(c => c.id === parseInt(req.params.id));
+        //if the project does not exist return status 404 (not found)
+        if (!data)
+            return res
+                .status(404)
+                .send("The project with the given id was not found");
+        //return the object
+        res.send(data);
+    });
+}
+dataObj.map(({database,url})=>{
+    setData(database,url);
+})
 
 
 
