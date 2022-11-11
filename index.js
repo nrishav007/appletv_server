@@ -1,15 +1,15 @@
-const PORT = process.env.PORT || 3000;
-const express = require("express");
-const watch_premium = require("./Resources/watch_premiers.json");
-const latest_originals = require("./Resources/latest_originals.json");
-const most_popular = require("./Resources/most_popular.json");
-const future_release = require("./Resources/future_release.json");
-const drama = require("./Resources/drama.json");
-const comedy = require("./Resources/comedy.json");
-const all_comedy_series = require("./Resources/all_comedy_series.json");
-const all_drama_series = require("./Resources/all_drama_series.json");
-const all_feature_films = require("./Resources/all_feature_films.json");
-const cors=require("cors");
+const PORT = process.env.PORT || 3001;
+import express from "express";
+import cors from 'cors';
+import watch_premium from "./Resources/watch_premiers.json";
+import latest_originals from "./Resources/latest_originals.json";
+import most_popular from "./Resources/most_popular.json";
+import future_release from "./Resources/future_release.json";
+import drama from "./Resources/drama.json";
+import comedy from "./Resources/comedy.json";
+import all_comedy_series from "./Resources/all_comedy_series.json";
+import all_drama_series from "./Resources/all_drama_series.json";
+import all_feature_films from "./Resources/all_feature_films.json";
 const help = {
     "Watch Premium": "/watchPremiers",
     "Latest Originals": "/latestOriginals",
@@ -25,10 +25,10 @@ const help = {
 
 
 // Initialize Express
-const app = express();
+var app = express();
 app.use(cors());
 // Create GET request
-app.get("/tv", (req, res) => {
+app.get("/", (req, res) => {
     res.send(help);
 });
 
