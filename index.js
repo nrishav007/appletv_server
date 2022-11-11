@@ -9,9 +9,9 @@ const comedy = require("./Resources/comedy.json");
 const all_comedy_series = require("./Resources/all_comedy_series.json");
 const all_drama_series = require("./Resources/all_drama_series.json");
 const all_feature_films = require("./Resources/all_feature_films.json");
-
+const cors=require("cors");
 const help = {
-    "Watch Premium": "/watchPremium",
+    "Watch Premium": "/watchPremiers",
     "Latest Originals": "/latestOriginals",
     "Most Popular": "/mostPopular",
     "Future Release": "/futureRelease",
@@ -26,7 +26,7 @@ const help = {
 
 // Initialize Express
 const app = express();
-
+app.use(cors());
 // Create GET request
 app.get("/tv", (req, res) => {
     res.send(help);
