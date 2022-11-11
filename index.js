@@ -22,15 +22,9 @@ const help = {
     "All Comedy Films": "/allComedyFilms"
 }
 
-const issue2options = {
-    origin: true,
-    methods: ["POST"],
-    credentials: true
-  };
-
 // Initialize Express
 var app = express();
-app.use(cors(issue2options));
+app.use(cors());
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
