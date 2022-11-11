@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 import express from "express";
 import cors from 'cors';
 import watch_premium from "./Resources/watch_premiers.json";
