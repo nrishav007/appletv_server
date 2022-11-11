@@ -9,7 +9,7 @@ const comedy = require("./Resources/comedy.json");
 const all_comedy_series = require("./Resources/all_comedy_series.json");
 const all_drama_series = require("./Resources/all_drama_series.json");
 const all_feature_films = require("./Resources/all_feature_films.json");
-const cors=require("cors");
+// const cors=require("cors");
 const help = {
     "Watch Premium": "/watchPremiers",
     "Latest Originals": "/latestOriginals",
@@ -26,19 +26,19 @@ const help = {
 
 // Initialize Express
 const app = express();
-app.use(cors());
+// app.use(cors());
 // Create GET request
-app.get("/tv",cors(), (req, res) => {
+app.get("/tv", (req, res) => {
     res.send(help);
 });
 
 const data = (json, path) => {
-    app.get(`/${path}`,cors(), (req, res) => {
+    app.get(`/${path}`, (req, res) => {
         res.send(json);
     });
 
     //To get a specific project, we need to define a parameter id
-    app.get(`/${path}/:id`,cors(), function (req, res) {
+    app.get(`/${path}/:id`, function (req, res) {
         const data = json.find(c => c.id === parseInt(req.params.id));
         //if the project does not exist return status 404 (not found)
         if (!data)
