@@ -1,6 +1,4 @@
 const PORT = process.env.PORT || 3000;
-import express from "express";
-import cors from 'cors';
 import watch_premium from "./Resources/watch_premiers.json";
 import latest_originals from "./Resources/latest_originals.json";
 import most_popular from "./Resources/most_popular.json";
@@ -22,6 +20,8 @@ const help = {
     "All Comedy Films": "/allComedyFilms"
 }
 // Initialize Express https://cors-anywhere.herokuapp.com/
+const express=require("express")
+const cors=require("cors")
 var app = express();
 // const cores=require("./corsResolver")
 app.use(cors({origin:"http://localhost:3000"}))
@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
 const data = (json, path) => {
     app.get(`/${path}`, (req, res) => {
-        res.send(json);
+        res.json(json);
     });
 
     //To get a specific project, we need to define a parameter id
