@@ -25,8 +25,7 @@ const help = {
 const issue2options = {
     origin: true,
     methods: ["POST"],
-    credentials: true,
-    maxAge: 3600
+    credentials: true
   };
 
 // Initialize Express
