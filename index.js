@@ -24,7 +24,7 @@ const help = {
 // Initialize Express https://cors-anywhere.herokuapp.com/
 var app = express();
 // const cores=require("./corsResolver")
-app.use(cors({origin:"*"}))
+app.use(cors({origin:"http://localhost:3000"}))
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
