@@ -28,17 +28,17 @@ const help = {
 const app = express();
 app.use(cors());
 // Create GET request
-app.get("/tv", (req, res) => {
+app.get("/tv",cors(), (req, res) => {
     res.send(help);
 });
 
 const data = (json, path) => {
-    app.get(`/${path}`, (req, res) => {
+    app.get(`/${path}`,cors(), (req, res) => {
         res.send(json);
     });
 
     //To get a specific project, we need to define a parameter id
-    app.get(`/${path}/:id`, function (req, res) {
+    app.get(`/${path}/:id`,cors(), function (req, res) {
         const data = json.find(c => c.id === parseInt(req.params.id));
         //if the project does not exist return status 404 (not found)
         if (!data)
