@@ -21,19 +21,8 @@ const help = {
     "All Drama Films": "/allDramaFilms",
     "All Comedy Films": "/allComedyFilms"
 }
-
-const issue2options = {
-    origin: true,
-    methods: ["POST"],
-    credentials: true
-  };
-
-// Initialize Express
+// Initialize Express https://cors-anywhere.herokuapp.com/
 var app = express();
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
