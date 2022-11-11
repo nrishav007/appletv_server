@@ -30,7 +30,10 @@ const issue2options = {
 
 // Initialize Express
 var app = express();
-app.use(cors(issue2options));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
