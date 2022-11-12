@@ -24,7 +24,7 @@ const express=require("express")
 const cors=require("cors")
 var app = express();
 // const cores=require("./corsResolver")
-app.use(cors({origin:"http://localhost:3000"}))
+app.use(cors())
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
