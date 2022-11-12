@@ -8,6 +8,7 @@ const comedy = require("./Resources/comedy.json");
 const all_comedy_series = require("./Resources/all_comedy_series.json");
 const all_drama_series = require("./Resources/all_drama_series.json");
 const all_feature_films = require("./Resources/all_feature_films.json");
+const fun_for_all = require("./Resources/fun_for_all.json");
 const fs = require("fs")
 const help = {
     "Watch Premium": "/watchPremiers",
@@ -18,7 +19,8 @@ const help = {
     "Drama": "/drama",
     "All Feature Films": "/allFeatureFilms",
     "All Drama Films": "/allDramaFilms",
-    "All Comedy Films": "/allComedyFilms"
+    "All Comedy Films": "/allComedyFilms",
+    "Fun For All": "/funForAll"
 }
 // Initialize Express https://cors-anywhere.herokuapp.com/
 const express = require("express")
@@ -56,9 +58,9 @@ const data = (json, path) => {
     const updateData = (updatedata) => { fs.writeFileSync(`${__dirname}/Resources/watch_premiers.json`, JSON.stringify(updatedata), { encoding: "utf-8" }) }
     // updateData({...users,users}) ;
     app.post(`/${path}`, (req, res) => {
-        console.log(users,{ ...req.body })
+        console.log(users, { ...req.body })
         users.push({ ...req.body });
-        updateData([ ...users, {...req.body} ]);
+        updateData([...users, { ...req.body }]);
         res.send({ ...req.body })
     });
 
@@ -88,7 +90,7 @@ data(comedy, "comedy");
 data(all_feature_films, "allFeatureFilms");
 data(all_drama_series, "allDramaFilms");
 data(all_comedy_series, "allComedyFilms");
-
+data(fun_for_all, "funForAll");
 
 
 
