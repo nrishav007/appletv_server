@@ -1,5 +1,5 @@
 const PORT = process.env.PORT || 3008;
-const watch_premium = require("./Resources/watch_premiers.json");
+const watch_premiers = require("./Resources/watch_premiers.json");
 const latest_originals = require("./Resources/latest_originals.json");
 const most_popular = require("./Resources/most_popular.json");
 const future_release = require("./Resources/future_release.json");
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
     res.send(help);
 });
 
-const data = (json, path) => {
+const data = (json, path,name) => {
     app.get(`/${path}`, (req, res) => {
         res.json(json);
     });
@@ -56,9 +56,9 @@ const data = (json, path) => {
     //using the http post request we can create a new project
 
 
-    const userFile = fs.readFileSync(`${__dirname}/Resources/watch_premiers.json`, { encoding: "utf-8" })
+    const userFile = fs.readFileSync(`${__dirname}/Resources/${name}.json`, { encoding: "utf-8" })
     const users = JSON.parse(userFile);
-    const updateData = (updatedata) => { fs.writeFileSync(`${__dirname}/Resources/watch_premiers.json`, JSON.stringify(updatedata), { encoding: "utf-8" }) }
+    const updateData = (updatedata) => { fs.writeFileSync(`${__dirname}/Resources/${name}.json`, JSON.stringify(updatedata), { encoding: "utf-8" }) }
     // updateData({...users,users}) ;
     app.post(`/${path}`, (req, res) => {
         users.push({ ...req.body });
@@ -83,17 +83,17 @@ const data = (json, path) => {
 }
 
 
-data(watch_premium, "watchPremiers");
-data(latest_originals, "latestOriginals");
-data(most_popular, "mostPopular");
-data(future_release, "futureRelease");
-data(drama, "drama");
-data(comedy, "comedy");
-data(all_feature_films, "allFeatureFilms");
-data(all_drama_series, "allDramaFilms");
-data(all_comedy_series, "allComedyFilms");
-data(fun_for_all, "funForAll");
-data(test,"test");
+data(watch_premiers, "watchPremiers","watch_premiers");
+data(latest_originals, "latestOriginals","latest_originals");
+data(most_popular, "mostPopular","most_popular");
+data(future_release, "futureRelease","future_release");
+data(drama, "drama","drama");
+data(comedy, "comedy", "comedy");
+data(all_feature_films, "allFeatureFilms","all_feature_films");
+data(all_drama_series, "allDramaFilms","all_drama_series");
+data(all_comedy_series, "allComedyFilms","all_comedy_series");
+data(fun_for_all, "funForAll","fun_for_all");
+data(test,"test","test");
 
 
 
