@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3008;
 const watch_premium = require("./Resources/watch_premiers.json");
 const latest_originals = require("./Resources/latest_originals.json");
 const most_popular = require("./Resources/most_popular.json");
