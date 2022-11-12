@@ -1,13 +1,14 @@
 const PORT = process.env.PORT || 3000;
-import watch_premium from "./Resources/watch_premiers.json";
-import latest_originals from "./Resources/latest_originals.json";
-import most_popular from "./Resources/most_popular.json";
-import future_release from "./Resources/future_release.json";
-import drama from "./Resources/drama.json";
-import comedy from "./Resources/comedy.json";
-import all_comedy_series from "./Resources/all_comedy_series.json";
-import all_drama_series from "./Resources/all_drama_series.json";
-import all_feature_films from "./Resources/all_feature_films.json";
+const watch_premium = require("./Resources/watch_premiers.json");
+const latest_originals = require("./Resources/latest_originals.json");
+const most_popular = require("./Resources/most_popular.json");
+const future_release = require("./Resources/future_release.json");
+const drama = require("./Resources/drama.json");
+const comedy = require("./Resources/comedy.json");
+const all_comedy_series = require("./Resources/all_comedy_series.json");
+const all_drama_series = require("./Resources/all_drama_series.json");
+const all_feature_films = require("./Resources/all_feature_films.json");
+const fs = require("fs")
 const help = {
     "Watch Premium": "/watchPremiers",
     "Latest Originals": "/latestOriginals",
@@ -20,11 +21,12 @@ const help = {
     "All Comedy Films": "/allComedyFilms"
 }
 // Initialize Express https://cors-anywhere.herokuapp.com/
-const express=require("express")
-const cors=require("cors")
+const express = require("express")
+const cors = require("cors")
 var app = express();
 // const cores=require("./corsResolver")
-app.use(cors())
+app.use(cors());
+app.use(express.json());
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
@@ -46,6 +48,33 @@ const data = (json, path) => {
         //return the object
         res.send(data);
     });
+    //using the http post request we can create a new project
+
+
+    const userFile = fs.readFileSync(`${__dirname}/Resources/watch_premiers.json`, { encoding: "utf-8" })
+    const users = JSON.parse(userFile);
+    const updateData = (updatedata) => { fs.writeFileSync(`${__dirname}/Resources/watch_premiers.json`, JSON.stringify(updatedata), { encoding: "utf-8" }) }
+    // updateData({...users,users}) ;
+    app.post(`/${path}`, (req, res) => {
+        users.push({ ...req.body });
+        updateData([ ...users, {...req.body} ]);
+        res.send({ ...req.body })
+    });
+
+    // app.post(`/${path}`, function (req, res) {
+    //     //create a project object
+    //     const movie_details = {
+    //         id: json.length + 1,
+    //         title:req.body.title,
+    //         description:req.body.description,
+    //         image: req.body.image,
+    //         season: req.body.season
+    //     };
+    //     //add the project to the array
+    //     json.push(movie_details);
+    //     //return the project
+    //     res.send(movie_details);
+    // });
 }
 
 
@@ -87,7 +116,7 @@ data(all_comedy_series, "allComedyFilms");
 
 
 
-//using the http post request we can create a new project
+// using the http post request we can create a new project
 // app.post("/projects", function (req, res) {
 //     //create a project object
 //     const project = {
