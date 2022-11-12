@@ -29,6 +29,7 @@ var app = express();
 // const cores=require("./corsResolver")
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({extended:false}))
 // Create GET request
 app.get("/", (req, res) => {
     res.send(help);
