@@ -61,7 +61,6 @@ const data = (json, path) => {
     const updateData = (updatedata) => { fs.writeFileSync(`${__dirname}/Resources/watch_premiers.json`, JSON.stringify(updatedata), { encoding: "utf-8" }) }
     // updateData({...users,users}) ;
     app.post(`/${path}`, (req, res) => {
-        console.log(users, { ...req.body })
         users.push({ ...req.body });
         updateData([...users, { ...req.body }]);
         res.send({ ...req.body })
