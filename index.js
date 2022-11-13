@@ -9,8 +9,6 @@ const all_comedy_series = require("./Resources/all_comedy_series.json");
 const all_drama_series = require("./Resources/all_drama_series.json");
 const all_feature_films = require("./Resources/all_feature_films.json");
 const fun_for_all = require("./Resources/fun_for_all.json");
-
-const test = require("./Resources/test.json");
 const fs = require("fs")
 const help = {
     "Watch Premium": "/watchPremiers",
